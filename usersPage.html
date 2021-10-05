@@ -5,10 +5,51 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    
 </head>
 <body>
     <img src="https://redprogramacioncompetitiva.com/images/lgo_rpc1.png" height="200" width="200"/>
-    
+    <h1>RPC</h1>
+    <a href="/logout"><input type="button" value="Log out"/></a>
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    UserName
+                </th>
+                
+                <th>
+                    FirstName
+                </th>
+                <th>
+                    LastName
+                </th>
+                <th>
+                    Birthday
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {{range $user:= .users}}
+            <tr>
+                <td>
+                    {{.UserName}}
+                </td>
+                <td>
+                    {{.FirstName}}   
+                </td> 
+                <td>
+                    {{.LastName}}
+                </td>
+                <td>
+                    {{.Birthday}}
+                </td>
+            </tr>
+            {{ end }}
+        </tbody>
+    </table>
+</body>
 </body>

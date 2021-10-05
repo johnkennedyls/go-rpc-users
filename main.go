@@ -31,13 +31,13 @@ func defaultCharge(c *gin.Context) {
 }
 
 func loadTableView(c *gin.Context) {
-	c.HTML(http.StatusOK, "users.html", gin.H{
+	c.HTML(http.StatusOK, "usersPage.html", gin.H{
 		"users": users,
 	})
 }
 
-func loadViewCreate(c *gin.Context) {
-	c.HTML(http.StatusOK, "create.html", gin.H{
+func loadRegisterView(c *gin.Context) {
+	c.HTML(http.StatusOK, "register.html", gin.H{
 		"answer": " ",
 	})
 }

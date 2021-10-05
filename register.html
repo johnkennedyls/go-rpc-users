@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    <div class="text-center">
+        <h1>Sign Up</h1>
+        <hr />
+        <div class="row">
+            {{ $length := len .answer }}
+            {{ if ne $length 1 }}
+                    <div>{{ .answer }}</div>
+            {{ end }}
+            <div action= "/create">
+                <form method="post">
+                    <div class="text-danger"></div>
+                    <div class="form-group">
+                        <label  class="control-label">Username</label>
+                        <input  class="form-control" name="username" />
+                        <span  class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label  class="control-label">Password</label>
+                        <input  type="password" class="form-control" name="password" />
+                        <span  class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">ConfirmPassword</label>
+                        <input type="password" class="form-control" name="confirmPassword" />
+                        <span class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Fistname</label>
+                        <input class="form-control" name="firstname"/>
+                        <span class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Lastname</label>
+                        <input class="form-control" name="lastname"/>
+                        <span class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Birthday</label>
+                        <input class="form-control" type="date" name="birthdate"/>
+                        <span class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Save" class="btn btn-primary"/>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div>
+            <a href="/users">Back</a>
+        </div>
+    </div>
+</body>
