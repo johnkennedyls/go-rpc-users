@@ -42,11 +42,11 @@ func loadRegisterView(c *gin.Context) {
 	})
 }
 
-func loadViewLogin(c *gin.Context) {
+func loadUserLoginView(c *gin.Context) {
 
-	if len(userLogged) != 0 {
-		c.HTML(http.StatusOK, "users.html", gin.H{
-			"user":  userLogged,
+	if len(loggedUser) != 0 {
+		c.HTML(http.StatusOK, "usersPage.html", gin.H{
+			"user":  loggedUser,
 			"users": users,
 		})
 		return
@@ -59,26 +59,26 @@ func loadViewLogin(c *gin.Context) {
 
 func addUser(c *gin.Context) {
 	username := c.PostForm("username")
-	password := c.PostForm("password")
-	confirmPassword := c.PostForm("confirmPassword")
 	firstname := c.PostForm("firstname")
 	lastname := c.PostForm("lastname")
-	birthdate := c.PostForm("birthdate")
+	birthday := c.PostForm("birthday")
+	password := c.PostForm("password")
+	passwordToConfirm := c.PostForm("passwordToConfirm")
 
-	if len(username) > 0 && len(password) > 0 && len(confirmPassword) > 0 && len(firstname) > 0 && len(lastname) > 0 && len(birthdate) > 0 {
-		if password == confirmPassword {
-			newUser := user{Username: username, Password: password, ConfirmPassword: confirmPassword, FirstName: firstname, LastName: lastname, Birthdate: birthdate}
+	if len(username) > 0 && len(password) > 0 && len(passwordToConfirm) > 0 && len(firstname) > 0 && len(lastname) > 0 && len(birthday) > 0 {
+		if password == passwordToConfirm {
+			newUser := user{Username: username, FirstName: firstname, LastName: lastname, Birthday: birthday, Password: password, PasswordToConfirm: passwordToConfirm}
 			users = append(users, newUser)
 			c.HTML(http.StatusOK, "login.html", gin.H{
-				"message": "your user was create successfully",
+				"message": "Usuario creado exitosamente",
 			})
 		} else {
 			c.HTML(http.StatusOK, "create.html", gin.H{
-				"answer": "The passwords are not equals",
+				"answer": "Contraseñas no coinciden",
 			})
 		}
 	} else {
-		c.HTML(http.StatusOK, "create.html", gin.H{
+		c.HTML(http.StatusOK, "usersPage.html", gin.H{
 			"answer": "There can be no empty fields",
 		})
 	}
@@ -91,15 +91,15 @@ func login(c *gin.Context) {
 	for _, a := range users {
 		if username == a.Username {
 			if password == a.Password {
-				userLogged := a
-				c.HTML(http.StatusOK, "users.html", gin.H{
-					"username": userLogged.Username,
+				loggedUser := a
+				c.HTML(http.StatusOK, "usersPage.html", gin.H{
+					"username": loggedUser.Username,
 					"users":    users,
 				})
 				return
 			} else {
 				c.HTML(http.StatusOK, "login.html", gin.H{
-					"message": "Incorrect Password",
+					"message": "Contraseña Incorrecta",
 				})
 				return
 			}
@@ -107,12 +107,12 @@ func login(c *gin.Context) {
 
 	}
 	c.HTML(http.StatusOK, "login.html", gin.H{
-		"message": "This user doesn't exist",
+		"message": "Usuario no encontrado, se recomienda registrarse de nuevo",
 	})
 
 }
 
 func logout(c *gin.Context) {
-	userLogged = []user{}
+	loggedUser = []user{}
 	c.Redirect(http.StatusMovedPermanently, "/users")
 }
