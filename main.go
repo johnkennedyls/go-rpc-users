@@ -26,6 +26,19 @@ var users = []user{
 	{Username: "stefa2005", FirstName: "Rut Stefany", LastName: "Landazuri Sandoval", Birthday: "11/08/2005", Password: "stefany", PasswordToConfirm: "stefany"},
 }
 
+func main() {
+	router := gin.Default()
+	router.LoadHTMLFiles("login.html", "create.html", "users.html")
+	router.GET("/", defaultCharge)
+	router.GET("/users", loadUserLoginView)
+	router.POST("/users", login)
+	router.GET("/create", loadRegisterView)
+	router.POST("/create", addUser)
+	router.GET("/list", loadTableView)
+	router.GET("/logout", logout)
+	router.Run("localhost:8080")
+}
+
 func defaultCharge(c *gin.Context) {
 	c.Redirect(http.StatusMovedPermanently, "/users")
 }
