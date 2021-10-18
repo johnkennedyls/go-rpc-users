@@ -14,21 +14,23 @@ type user struct {
 	Birthday          string `json:"birthday"`
 	Password          string `json:"password"`
 	PasswordToConfirm string `json:"passwordToConfirm"`
+	Email             string `json:"email"`
+	Country           string `json:"country"`
 }
 
 var loggedUser = []user{}
 
 // users slice to seed record album data.
 var users = []user{
-	{Username: "jkls1998", FirstName: "John Kennedy", LastName: "Landazuri Sandoval", Birthday: "17/10/1998", Password: "johnkennedy", PasswordToConfirm: "johnkennedy"},
-	{Username: "nimiasaca", FirstName: "Nimia", LastName: "Sandoval Carabalí", Birthday: "6/08/1967", Password: "nimia", PasswordToConfirm: "nimia"},
-	{Username: "kenken", FirstName: "Kennedy", LastName: "Landazuri Cortez", Birthday: "11/11/1972", Password: "kenkenken", PasswordToConfirm: "kenkenken"},
-	{Username: "stefa2005", FirstName: "Rut Stefany", LastName: "Landazuri Sandoval", Birthday: "11/08/2005", Password: "stefany", PasswordToConfirm: "stefany"},
+	{Username: "jkls1998", FirstName: "John Kennedy", LastName: "Landazuri Sandoval", Birthday: "17/10/1998", Password: "johnkennedy", PasswordToConfirm: "johnkennedy", Email: "email1@gmail.com", Country: "Colombia"},
+	{Username: "nimiasaca", FirstName: "Nimia", LastName: "Sandoval Carabalí", Birthday: "6/08/1967", Password: "nimia", PasswordToConfirm: "nimia", Email: "email2@gmail.com", Country: "Colombia"},
+	{Username: "kenken", FirstName: "Kennedy", LastName: "Landazuri Cortez", Birthday: "11/11/1972", Password: "kenkenken", PasswordToConfirm: "kenkenken", Email: "email3@gmail.com", Country: "Colombia"},
+	{Username: "stefa2005", FirstName: "Rut Stefany", LastName: "Landazuri Sandoval", Birthday: "11/08/2005", Password: "stefany", PasswordToConfirm: "stefany", Email: "email4@gmail.com", Country: "Colombia"},
 }
 
 func main() {
 	router := gin.Default()
-	router.LoadHTMLFiles("login.html", "create.html", "users.html")
+	router.LoadHTMLFiles("login.html", "register.html", "usersPage.html")
 	router.GET("/", defaultCharge)
 	router.GET("/users", loadUserLoginView)
 	router.POST("/users", login)
@@ -77,10 +79,12 @@ func addUser(c *gin.Context) {
 	birthday := c.PostForm("birthday")
 	password := c.PostForm("password")
 	passwordToConfirm := c.PostForm("passwordToConfirm")
+	email := c.PostForm("email")
+	country := c.PostForm("country")
 
-	if len(username) > 0 && len(password) > 0 && len(passwordToConfirm) > 0 && len(firstname) > 0 && len(lastname) > 0 && len(birthday) > 0 {
+	if len(username) > 0 && len(password) > 0 && len(passwordToConfirm) > 0 && len(firstname) > 0 && len(lastname) > 0 && len(birthday) > 0 && len(email) > 0 && len(country) > 0 {
 		if password == passwordToConfirm {
-			newUser := user{Username: username, FirstName: firstname, LastName: lastname, Birthday: birthday, Password: password, PasswordToConfirm: passwordToConfirm}
+			newUser := user{Username: username, FirstName: firstname, LastName: lastname, Birthday: birthday, Password: password, PasswordToConfirm: passwordToConfirm, Email: email, Country: country}
 			users = append(users, newUser)
 			c.HTML(http.StatusOK, "login.html", gin.H{
 				"message": "Usuario creado exitosamente",
