@@ -1,0 +1,136 @@
+body{
+	background-color: #3A0CA3;
+	font-family: 'Roboto', sans-serif;
+	margin: 0;
+}
+.body2{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	background-color: rgba(0, 0, 0, .45);
+}
+.container{
+	width: 950px;
+	height: 455px;
+	
+	position: absolute;
+  	top:50%;
+  	left:50%;
+  	transform: translate(-50%, -50%);
+  	display: inline-flex; 
+}
+.caja-de-atras{
+	background-color: #118ab2;
+  	width: 100%;
+  	height: 80%;
+  	position: absolute;
+  	top:10%;
+  	display: inline-flex;
+  	background-image: url("1.jpeg");
+}
+
+.caja-frontal{
+	background-color: rgba(255, 255, 255, .76);
+	border-radius: 20px;
+	width: 60%;
+	z-index: 10;
+	position: absolute;
+	right:0;
+	margin-right: 20%;
+	margin-left: 3%;
+	top: 17.5%;
+}
+.caja-login{
+ 	padding: 20px;
+  text-align: inherit;
+}
+.caja-entradas-de-texto{
+  display: inline-flex;
+  
+}
+.caja-entradas-de-texto input{
+  display: flex;
+  align-items: center;
+}
+/* front box content*/
+.caja-login h2{
+  color: #3A0CA3;
+  font-size:22px;
+  margin: 50px;
+}
+
+.caja-login input{
+  display: block;
+  width: 100%;
+  height: 40px;
+  background-color: #f2f2f2;
+  border: none;
+  margin-bottom:30px;
+  font-size: 12px;
+  border-radius: 16px;
+}
+.caja-login button{
+  background-color: #3A0CA3;
+  border: none;
+  color:white;
+  font-size: 12px;
+  font-weight: 300;
+  box-sizing: content-box;
+  padding:10px;
+  border-radius: 15px;
+  width: 230px;
+  height: 20px;
+  position: absolute;
+  right:148px;
+  bottom: 55px;
+  cursor: pointer;
+}
+
+/* Fade In & Out*/
+.caja-login p {
+  cursor: pointer;
+  color: rgba(58, 12, 163, .42);
+  font-size:15px;
+  margin-left: 160px;
+}
+.msg-caja-atras{
+  width: 100%;
+  height: 100%;
+  font-size: 15px;
+  box-sizing: border-box;
+  background-color: rgba(0, 0, 0, .54);
+}
+
+.msg-caja-atras .title{
+  font-weight: 300;
+  font-size: 23px;
+}
+
+.msg-caja-atras p {
+  font-weight: 100;
+}
+
+.contenidotexto{
+  color:white;
+  margin-top:115px;
+  margin-left: 13%;
+}
+
+.msg-caja-atras button {
+  background-color: rgba(255, 255, 255, .28);
+  border: 2px solid white;
+  border-radius: 10px;
+  color:white;
+  font-size: 12px;
+  box-sizing: content-box;
+  font-weight: 300;
+  padding:10px;
+  margin-top: 25px;
+}
+.caja1 input, .caja2 input{
+  margin-right: 50px;
+  margin-left: 45%;
+  width: 250px;
+
+}
+
