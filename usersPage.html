@@ -26,8 +26,12 @@
                 <th>
                     LastName
                 </th>
+               
                 <th>
-                    Birthday
+                    Email
+                </th>
+                <th>
+                    Country
                 </th>
                 <th></th>
             </tr>
@@ -36,7 +40,7 @@
             {{range $user:= .users}}
             <tr>
                 <td>
-                    {{.UserName}}
+                    {{.Username}}
                 </td>
                 <td>
                     {{.FirstName}}   
@@ -44,8 +48,12 @@
                 <td>
                     {{.LastName}}
                 </td>
+               
                 <td>
-                    {{.Birthday}}
+                    {{.Email}}
+                </td>
+                <td>
+                    {{.Country}}
                 </td>
             </tr>
             {{ end }}

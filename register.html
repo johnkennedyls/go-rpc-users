@@ -1,75 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    
+	<title>Proyecto-Integrador-registe</title>
+	<link rel="stylesheet" type="text/css" href="style2.css">
 </head>
+
 <body>
-    <div class="text-center">
-        <h1>Sign Up</h1>
-        <hr />
-        <div class="row">
-            {{ $length := len .answer }}
+	<div class="body2">
+		<div class="container">
+			<div class="caja-de-atras">
+				<div class="msg-caja-atras">
+        			
+      			</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="caja-frontal">
+      <div class="caja-login">
+        <h2>SING UP</h2>
+		<div> 
+			{{ $length := len .answer }}
             {{ if ne $length 1 }}
                     <div>{{ .answer }}</div>
             {{ end }}
-            <div action= "/create">
-                <form method="post">
-                    <div c></div>
-                    <div >
-                        <label  >UserName</label>
-                        <input   name="username" />
-                        <span ></span>
-                    </div>
-                    <div >
-                        <label >Password</label>
-                        <input  type="password"  name="password" />
-                        <span  ></span>
-                    </div>
-
-                    <div >
-                        <label >Repeat Password</label>
-                        <input type="password"  name="confirmPassword" />
-                        <span ></span>
-                    </div>
-
-                    <div >
-                        <label >First Name</label>
-                        <input  name="firstname"/>
-                        <span ></span>
-                    </div>
-                    <div >
-                        <label >Last Name</label>
-                        <input  name="lastname"/>
-                        <span ></span>
-                    </div>
-                    <div >
-                        <label >Birthday</label>
-                        <input  type="date" name="birthdate"/>
-                        <span ></span>
-                    </div>
-                    <div >
-                        <label >Email</label>
-                        <input name="email"/>
-                        <span ></span>
-                    </div>
-                    <div >
-                        <label >Country</label>
-                        <input name="country"/>
-                        <span ></span>
-                    </div>
-                    <div >
+		</div>
+		<div action="/create">
+			<form method="post">
+				<div class="caja-entradas-de-texto">
+					<div class="caja1">
+						<input type="text" name="username" placeholder="     NICKNAME">
+						  <input type="text" name="firstname" placeholder="     FIRST NAME">
+						  <input type="text" name="lastname" placeholder="     LAST NAME">
+						  <input type="text" name="country" placeholder="     COUNTRY">
+					  </div>
+					  <div class="caja2">
+						  <input type="text" name="email" placeholder="     EMAIL">
+						  <input type="password" name="password" placeholder="     PASSWORD">
+						  <input type="password" name="passwordToConfirm" placeholder="     CONFIRM PASSWORD">
+		
+					  </div>
+					 <!--<button>SING UP</button>-->
+					 <div >
                         <input type="submit" value="Save" />
                     </div>
-                </form>
-            </div>
-        </div>
-
-        <div>
+				</div>
+			</form>
+			
+		    <div>
             <a href="/users">Back</a>
         </div>
-    </div>
+			
+		  </div>
+		</div>
+        
 </body>
+</html>

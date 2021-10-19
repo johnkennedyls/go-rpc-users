@@ -8,10 +8,10 @@ import (
 
 // album represents data about a rpc user.
 type user struct {
-	Username          string `json:"username"`
-	FirstName         string `json:"firstName"`
-	LastName          string `json:"lastName"`
-	Birthday          string `json:"birthday"`
+	Username  string `json:"username"`
+	FirstName string `json:"firstName"`
+	LastName  string `json:"lastName"`
+	//Birthday          string `json:"birthday"`
 	Password          string `json:"password"`
 	PasswordToConfirm string `json:"passwordToConfirm"`
 	Email             string `json:"email"`
@@ -22,10 +22,10 @@ var loggedUser = []user{}
 
 // users slice to seed record album data.
 var users = []user{
-	{Username: "jkls1998", FirstName: "John Kennedy", LastName: "Landazuri Sandoval", Birthday: "17/10/1998", Password: "johnkennedy", PasswordToConfirm: "johnkennedy", Email: "email1@gmail.com", Country: "Colombia"},
-	{Username: "nimiasaca", FirstName: "Nimia", LastName: "Sandoval Carabalí", Birthday: "6/08/1967", Password: "nimia", PasswordToConfirm: "nimia", Email: "email2@gmail.com", Country: "Colombia"},
-	{Username: "kenken", FirstName: "Kennedy", LastName: "Landazuri Cortez", Birthday: "11/11/1972", Password: "kenkenken", PasswordToConfirm: "kenkenken", Email: "email3@gmail.com", Country: "Colombia"},
-	{Username: "stefa2005", FirstName: "Rut Stefany", LastName: "Landazuri Sandoval", Birthday: "11/08/2005", Password: "stefany", PasswordToConfirm: "stefany", Email: "email4@gmail.com", Country: "Colombia"},
+	{Username: "jkls1998", FirstName: "John Kennedy", LastName: "Landazuri Sandoval", Password: "johnkennedy", PasswordToConfirm: "johnkennedy", Email: "email1@gmail.com", Country: "Colombia"},
+	{Username: "nimiasaca", FirstName: "Nimia", LastName: "Sandoval Carabalí", Password: "nimia", PasswordToConfirm: "nimia", Email: "email2@gmail.com", Country: "Colombia"},
+	{Username: "kenken", FirstName: "Kennedy", LastName: "Landazuri Cortez", Password: "kenkenken", PasswordToConfirm: "kenkenken", Email: "email3@gmail.com", Country: "Colombia"},
+	{Username: "stefa2005", FirstName: "Rut Stefany", LastName: "Landazuri Sandoval", Password: "stefany", PasswordToConfirm: "stefany", Email: "email4@gmail.com", Country: "Colombia"},
 }
 
 func main() {
@@ -76,15 +76,15 @@ func addUser(c *gin.Context) {
 	username := c.PostForm("username")
 	firstname := c.PostForm("firstname")
 	lastname := c.PostForm("lastname")
-	birthday := c.PostForm("birthday")
+	//birthday := c.PostForm("birthday")
 	password := c.PostForm("password")
 	passwordToConfirm := c.PostForm("passwordToConfirm")
 	email := c.PostForm("email")
 	country := c.PostForm("country")
 
-	if len(username) > 0 && len(password) > 0 && len(passwordToConfirm) > 0 && len(firstname) > 0 && len(lastname) > 0 && len(birthday) > 0 && len(email) > 0 && len(country) > 0 {
+	if len(username) > 0 && len(password) > 0 && len(passwordToConfirm) > 0 && len(firstname) > 0 && len(lastname) > 0 && len(email) > 0 && len(country) > 0 {
 		if password == passwordToConfirm {
-			newUser := user{Username: username, FirstName: firstname, LastName: lastname, Birthday: birthday, Password: password, PasswordToConfirm: passwordToConfirm, Email: email, Country: country}
+			newUser := user{Username: username, FirstName: firstname, LastName: lastname, Password: password, PasswordToConfirm: passwordToConfirm, Email: email, Country: country}
 			users = append(users, newUser)
 			c.HTML(http.StatusOK, "login.html", gin.H{
 				"message": "Usuario creado exitosamente",
@@ -102,16 +102,17 @@ func addUser(c *gin.Context) {
 }
 
 func login(c *gin.Context) {
-	username := c.PostForm("Username")
+	//username := c.PostForm("Username")
 	password := c.PostForm("Password")
+	email := c.PostForm("Email")
 
 	for _, a := range users {
-		if username == a.Username {
+		if email == a.Email {
 			if password == a.Password {
 				loggedUser := a
 				c.HTML(http.StatusOK, "usersPage.html", gin.H{
-					"username": loggedUser.Username,
-					"users":    users,
+					"email": loggedUser.Email,
+					"users": users,
 				})
 				return
 			} else {

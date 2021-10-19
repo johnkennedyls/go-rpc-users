@@ -1,50 +1,53 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+	<title>Proyecto-Integrador-login</title>
+	<link rel="stylesheet" type="text/css" href="stylecss.css">
 </head>
 
 <body>
-    <div class="text-center">
-        <div>
-            <h1>RPC </h1>
-            {{ $length := len .message }}
-            {{ if ne $length 1 }}
-                <div >{{ .message }}</div>
-            {{ end }}
+	<div>
+		<h1>RPC </h1>
+		{{ $length := len .message }}
+		{{ if ne $length 1 }}
+			<div >{{ .message }}</div>
+		{{ end }}
 
-    
 
-        </div>
-        
-        <form action="/users" method="POST">
-            <div >
-                <div >
-                    <label >User Name</label>
-                    <input  name="Username" />
-                    <span ></span>
-                </div>
-                <div >
-                    <label >Password</label>
-                    <input type="password"  name="Password" />
-                    <span></span>
-                </div>
-            </div>
-            <div >
-                <input type="submit" value="SIGN IN"  />
-            </div>
-            <label>New User</label>
-            <div>
-                <a href="/create">
-                   SIGN UP</a>
-            </div>
-        </form>
-    </div>
 
+	</div>
+	<div class="body2">
+		<div class="container">
+			<div class="caja-de-atras">
+				<div class="msg-caja-atras">
+        			<div class="contenidotexto">
+          				<p class="title">Don't have an account?</p>
+          				<p>Sign up to take part in the competitions.</p>
+          				<!--<button id="switch1">SING UP</button>-->
+						  <a href="/create">
+							SIGN UP</a>
+        			</div>
+      			</div>
+			</div>
+		</div>
+	</div>
+
+
+	<form action="/users" method="POST">
+		<div class="caja-frontal">
+			<div class="caja-login">
+			  <h2>LOG IN</h2>
+			  <div class="caja-entradas-de-texto">
+				<input type="text" name="Email" placeholder="     EMAIL">
+				<input type="password" name="Password" placeholder="     PASSWORD">
+			  </div>
+			  <p>FORGET PASSWORD?</p>
+			  <!--<button>LOG IN</button>-->
+			  <input type="submit" value="LOG IN"  />
+			</div>
+	</form>
 </body>
-
 </html>
