@@ -30,7 +30,11 @@ var users = []user{
 
 func main() {
 	router := gin.Default()
+	//add html files
 	router.LoadHTMLFiles("login.html", "register.html", "usersPage.html")
+	//add routes css
+	router.Static("/css", "./css")
+
 	router.GET("/", defaultCharge)
 	router.GET("/users", loadUserLoginView)
 	router.POST("/users", login)
