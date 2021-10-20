@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"golang.org/x/crypto/bcrypt"
 )
 
 // album represents data about a rpc user.
@@ -76,6 +77,12 @@ func loadUserLoginView(c *gin.Context) {
 	}
 }
 
+func hsAndSalt(pwd []byte) (string, error) {
+	hash, err := bcrypt.GenerateFromPassword(pwd, bcrypt.MinCost)
+
+	return string(hash), err
+}
+
 func addUser(c *gin.Context) {
 	username := c.PostForm("username")
 	firstname := c.PostForm("firstname")
@@ -88,8 +95,15 @@ func addUser(c *gin.Context) {
 
 	if len(username) > 0 && len(password) > 0 && len(passwordToConfirm) > 0 && len(firstname) > 0 && len(lastname) > 0 && len(email) > 0 && len(country) > 0 {
 		if password == passwordToConfirm {
-			newUser := user{Username: username, FirstName: firstname, LastName: lastname, Password: password, PasswordToConfirm: passwordToConfirm, Email: email, Country: country}
+			hsdpassword, e := hsAndSalt([]byte(password))
+			if e != nil {
+				c.HTML(http.StatusOK, "create.html", gin.H{
+					"message": "Error al asegurar contraseña",
+				})
+			}
+			newUser := user{Username: username, FirstName: firstname, LastName: lastname, Password: hsdpassword, PasswordToConfirm: hsdpassword, Email: email, Country: country}
 			users = append(users, newUser)
+
 			c.HTML(http.StatusOK, "login.html", gin.H{
 				"message": "Usuario creado exitosamente",
 			})

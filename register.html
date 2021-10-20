@@ -30,24 +30,22 @@
             {{ end }}
 		</div>
 		<div action="/create">
-			<form method="post">
+			<form method="POST">
 				<div class="caja-entradas-de-texto">
 					<div class="caja1">
-						<input type="text" name="username" placeholder="     NICKNAME">
-						  <input type="text" name="firstname" placeholder="     FIRST NAME">
-						  <input type="text" name="lastname" placeholder="     LAST NAME">
-						  <input type="text" name="country" placeholder="     COUNTRY">
+						<input type="text" name="username" placeholder="     NICKNAME" required>
+						  <input type="text" name="firstname" placeholder="     FIRST NAME" required>
+						  <input type="text" name="lastname" placeholder="     LAST NAME" required>
+						  <input type="text" name="country" placeholder="     COUNTRY" required>
 					  </div>
 					  <div class="caja2">
-						  <input type="text" name="email" placeholder="     EMAIL">
-						  <input type="password" name="password" placeholder="     PASSWORD">
-						  <input type="password" name="passwordToConfirm" placeholder="     CONFIRM PASSWORD">
+						  <input type="text" name="email" placeholder="     EMAIL" required>
+						  <input type="password" name="password" placeholder="     PASSWORD" required>
+						  <input type="password" name="passwordToConfirm" placeholder="     CONFIRM PASSWORD" required>
 		
 					  </div>
 					 <!--<button>SING UP</button>-->
-					 <div >
-                        <input type="submit" value="Save" />
-                    </div>
+					 <button type="submit">SING UP</button>
 				</div>
 			</form>
 			
