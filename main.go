@@ -1,6 +1,7 @@
 package main
 
 import (
+	"log"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -95,15 +96,8 @@ func addUser(c *gin.Context) {
 
 	if len(username) > 0 && len(password) > 0 && len(passwordToConfirm) > 0 && len(firstname) > 0 && len(lastname) > 0 && len(email) > 0 && len(country) > 0 {
 		if password == passwordToConfirm {
-			hsdpassword, e := hsAndSalt([]byte(password))
-			if e != nil {
-				c.HTML(http.StatusOK, "create.html", gin.H{
-					"message": "Error al asegurar contraseña",
-				})
-			}
-			newUser := user{Username: username, FirstName: firstname, LastName: lastname, Password: hsdpassword, PasswordToConfirm: hsdpassword, Email: email, Country: country}
+			newUser := user{Username: username, FirstName: firstname, LastName: lastname, Password: password, PasswordToConfirm: passwordToConfirm, Email: email, Country: country}
 			users = append(users, newUser)
-
 			c.HTML(http.StatusOK, "login.html", gin.H{
 				"message": "Usuario creado exitosamente",
 			})
@@ -119,6 +113,13 @@ func addUser(c *gin.Context) {
 	}
 }
 
+func comparePasswords(hsdPwd string, pwd []byte) error {
+	byteHash := []byte(hsdPwd)
+	log.Println("hsdp: " + hsdPwd + "   pwd:" + string(pwd))
+	e := bcrypt.CompareHashAndPassword(byteHash, pwd)
+
+	return e
+}
 func login(c *gin.Context) {
 	//username := c.PostForm("Username")
 	password := c.PostForm("Password")
