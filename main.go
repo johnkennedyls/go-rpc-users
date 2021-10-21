@@ -33,11 +33,13 @@ var users = []user{
 func main() {
 	router := gin.Default()
 	//add html files
-	router.LoadHTMLFiles("login.html", "register.html", "usersPage.html")
+	router.LoadHTMLFiles("login.html", "register.html", "usersPage.html", "index.html")
 	//add routes css
 	router.Static("/css", "./css")
+	router.Static("/js", "./js")
 
 	router.GET("/", defaultCharge)
+	router.GET("/index", loadIndex)
 	router.GET("/users", loadUserLoginView)
 	router.POST("/users", login)
 	router.GET("/create", loadRegisterView)
@@ -48,7 +50,13 @@ func main() {
 }
 
 func defaultCharge(c *gin.Context) {
-	c.Redirect(http.StatusMovedPermanently, "/users")
+	c.Redirect(http.StatusMovedPermanently, "/index")
+}
+
+func loadIndex(c *gin.Context) {
+	c.HTML(http.StatusOK, "index.html", gin.H{
+		"index": " ",
+	})
 }
 
 func loadTableView(c *gin.Context) {
